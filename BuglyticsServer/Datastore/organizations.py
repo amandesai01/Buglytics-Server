@@ -2,7 +2,7 @@ from BuglyticsServer.properties import get_pg_connection
 
 QUERY_INSERT_ORGANIZATION = "INSERT INTO organizations(organization_id, title, created_ts) VALUES (%s, %s, %s)"
 
-QUERY_SELECT_ORGANIZATION = "SELECT title FROM organizations WHERE organization_id = %s"
+QUERY_SELECT_ORGANIZATION = "SELECT title, created_ts FROM organizations WHERE organization_id = %s"
 
 QUERY_SELECT_PROJECT_COUNT_ORGANIZATION = "SELECT COUNT(project_id) FROM projects WHERE organization_is = %s"
 
