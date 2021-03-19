@@ -1,13 +1,15 @@
 from uuid import uuid4
 from time import time
+from hashlib import sha256
 
 from BuglyticsServer.Datastore import organizations as org_db
 
-def create_organization(title):
+def create_organization(title, secret):
     organization = {
         "organization_id": str(uuid4()),
         "title": title,
-        "created_ts": str(int(time()))
+        "created_ts": str(int(time())),
+        "secret": sha256(secret.encode('utf-8')).hexdigest()
     }
     org_db.insert_organization(organization)
     organization['total_projects'] = 0
