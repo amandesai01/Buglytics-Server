@@ -24,7 +24,7 @@ except Exception as e:
     print("Error Connecting Database")
 
 # Getter Methods
-def get_db_instance():
+def get_pg_connection():
     return __PG_CONNECTION__
 
 def get_site_secret_key():
