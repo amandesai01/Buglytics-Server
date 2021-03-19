@@ -4,7 +4,9 @@ QUERY_INSERT_ORGANIZATION = "INSERT INTO organizations(organization_id, title, c
 
 QUERY_SELECT_ORGANIZATION = "SELECT title, created_ts FROM organizations WHERE organization_id = %s"
 
-QUERY_SELECT_PROJECT_COUNT_ORGANIZATION = "SELECT COUNT(project_id) FROM projects WHERE organization_is = %s"
+QUERY_SELECT_PROJECT_COUNT_ORGANIZATION = "SELECT COUNT(project_id) FROM projects WHERE organization_id = %s"
+
+QUERY_SELECT_ORGANIZATION_ID_FROM_EMAIL_PASS = "SELECT organization_id FROM organizations WHERE organization_email = %s AND secret_key = %s"
 
 db = get_pg_connection()
 
@@ -25,3 +27,10 @@ def select_organization_project_count(organization_id):
     with db:
         with db.cursor() as cursor:
             cursor.execute(QUERY_SELECT_PROJECT_COUNT_ORGANIZATION, values)
+
+def select_org_id_from_email_pass(email, secret):
+    values = (email, secret)
+    with db:
+        with db.cursor() as cursor:
+            cursor.execute(QUERY_SELECT_ORGANIZATION_ID_FROM_EMAIL_PASS, values)
+            return cursor.fetchone()

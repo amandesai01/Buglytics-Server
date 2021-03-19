@@ -6,7 +6,7 @@ from psycopg2 import errors as pgerrors
 
 from server.datastore import organizations as org_db
 from server.validations import validate_secret
-from server.exceptions import EmailAlreadyExistsException
+from server.exceptions import EmailAlreadyExistsException, PasswordMismatchException
 
 def create_organization(title, email, secret):
     try:
@@ -34,3 +34,9 @@ def get_organization_details(organization_id):
         "total_projects": data_project_count[0]
     }
     return organization
+
+def get_organization_id_from_email_password(organization_email, secret):
+    data = org_db.select_org_id_from_email_pass(organization_email, secret)
+    if data and len(data > 0):
+        return data[0]
+    raise PasswordMismatchException
