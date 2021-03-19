@@ -14,3 +14,11 @@ class SecretInvalidException(BuglyticsException):
     def __str__(self):
         return "Password submitted was invalid. It must contain [0-9], [a-z], [A-Z], atleast one special character, " \
                "length between 8 to 32. "
+
+class PasswordMismatchException(BuglyticsException):
+    def __str__(self):
+        return "Given password not matching with actual password."
+
+class EmailAlreadyExistsException(BuglyticsException):
+    def __str__(self):
+        return "This email is already registered."
