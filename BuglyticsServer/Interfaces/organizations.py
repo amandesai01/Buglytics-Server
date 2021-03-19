@@ -3,8 +3,10 @@ from time import time
 from hashlib import sha256
 
 from BuglyticsServer.Datastore import organizations as org_db
+from BuglyticsServer.validations import validate_secret
 
 def create_organization(title, secret):
+    validate_secret(secret)
     organization = {
         "organization_id": str(uuid4()),
         "title": title,
