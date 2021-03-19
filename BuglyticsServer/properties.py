@@ -11,6 +11,9 @@ else:
 
 postgres_url = os.getenv("POSTGRESURL")
 secret_key = os.getenv("SECRET")
+services_var = os.getenv("SERVICES_TO_DEPLOY")
+
+__SERVICES__ = services_var.split("/")
 
 __PG_CONNECTION__ = None
 try:
@@ -26,3 +29,6 @@ def get_db_instance():
 
 def get_site_secret_key():
     return secret_key
+
+def get_services_to_deploy():
+    return __SERVICES__
