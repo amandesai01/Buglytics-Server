@@ -14,7 +14,7 @@ def error_report_access_required(f):
     def decorated_function(*args, **kwargs):
         try:
             obj = get_decoded_token_from_header(request.headers)
-            if "ERR_REPORT" in obj['ACCESS_RIGHTS']:
+            if "ERR_REPORT" in obj['ACCESS_RIGHTS'].split("|"):
                 return f(obj['PROJ_ID'], obj['ORG_ID'])
             return jsonify({ "STATUS" : "FAIL", "MSG": "Contact Organization Owner to Provide Access." }), 401
         except:
@@ -26,7 +26,7 @@ def error_view_access_required(f):
     def decorated_function(*args, **kwargs):
         try:
             obj = get_decoded_token_from_header(request.headers)
-            if "ERR_VIEW" in obj['ACCESS_RIGHTS']:
+            if "ERR_VIEW" in obj['ACCESS_RIGHTS'].split("|"):
                 return f(obj['PROJ_ID'], obj['ORG_ID'])
             return jsonify({ "STATUS" : "FAIL", "MSG": "Contact Organization Owner to Provide Access." }), 401
         except:
