@@ -1,4 +1,4 @@
-from BuglyticsServer.properties import get_pg_connection
+from server.properties import get_pg_connection
 
 QUERY_INSERT_PROJECT = "INSERT INTO projects(project_id, organization_id, title, details, created_ts) VALUES (%s, %s, %s, %s, %s)"
 

@@ -4,9 +4,9 @@ from hashlib import sha256
 
 from psycopg2 import errors as pgerrors
 
-from BuglyticsServer.Datastore import organizations as org_db
-from BuglyticsServer.validations import validate_secret
-from BuglyticsServer.exceptions import EmailAlreadyExistsException
+from server.datastore import organizations as org_db
+from server.validations import validate_secret
+from server.exceptions import EmailAlreadyExistsException
 
 def create_organization(title, email, secret):
     try:

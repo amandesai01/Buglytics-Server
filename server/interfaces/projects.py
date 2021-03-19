@@ -1,7 +1,7 @@
 from uuid import uuid4
 from time import time
 
-from BuglyticsServer.Datastore import projects as proj_db
+from server.datastore import projects as proj_db
 
 def create_project(title, details, organization_id):
     project = {

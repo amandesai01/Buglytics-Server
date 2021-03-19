@@ -1,8 +1,8 @@
 from flask import request, jsonify
 from functools import wraps
 
-from BuglyticsServer import utils
-from BuglyticsServer.properties import get_site_secret_key
+from server import utils
+from server.properties import get_site_secret_key
 
 def get_decoded_token_from_header(request_header):
     if 'token' in request_header:

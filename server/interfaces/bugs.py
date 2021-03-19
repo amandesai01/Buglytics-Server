@@ -1,8 +1,8 @@
 from uuid import uuid4
 from time import time
 
-from BuglyticsServer.Datastore import bugs as bugs_db
-from BuglyticsServer.exceptions import NoProjectUnderOrganisationException, UnidentifiedException
+from server.datastore import bugs as bugs_db
+from server.exceptions import NoProjectUnderOrganisationException, UnidentifiedException
 
 def create_bug(project_id, bug_level, bug_location, bug_text, organization_id):
     bug = {

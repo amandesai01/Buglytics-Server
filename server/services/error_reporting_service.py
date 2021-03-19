@@ -2,9 +2,9 @@ from traceback import print_exc
 
 from flask import Blueprint, jsonify, request
 
-from BuglyticsServer.Interfaces import bugs as bug_service
-from BuglyticsServer.middlewares import error_report_access_required, error_view_access_required
-from BuglyticsServer.exceptions import BuglyticsException
+from server.interfaces import bugs as bug_service
+from server.middlewares import error_report_access_required, error_view_access_required
+from server.exceptions import BuglyticsException
 
 app = Blueprint("error_reporting_service", __name__)
 

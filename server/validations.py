@@ -1,6 +1,6 @@
 import re
 
-from BuglyticsServer.exceptions import SecretInvalidException
+from server.exceptions import SecretInvalidException
 
 def validate_secret(user_password) :
     regex = "^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,32}$"

@@ -1,4 +1,4 @@
-from BuglyticsServer.properties import get_pg_connection
+from server.properties import get_pg_connection
 
 QUERY_INSERT_BUG_INFO = "INSERT INTO bugs(bug_id, project_id, bug_level, bug_location, bug_text, ts) \
                             VALUES (%s, %s, %s, %s, %s, %s)"

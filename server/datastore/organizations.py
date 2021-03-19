@@ -1,4 +1,4 @@
-from BuglyticsServer.properties import get_pg_connection
+from server.properties import get_pg_connection
 
 QUERY_INSERT_ORGANIZATION = "INSERT INTO organizations(organization_id, title, created_ts, secret_key, organization_email) VALUES (%s, %s, %s, %s, %s)"
 
