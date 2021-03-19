@@ -9,3 +9,8 @@ class NoProjectUnderOrganisationException(BuglyticsException):
 class UnidentifiedException(BuglyticsException):
     def __str__(self):
         return "Some Error. Try again or contact team."
+
+class SecretInvalidException(BuglyticsException):
+    def __str__(self):
+        return "Password submitted was invalid. It must contain [0-9], [a-z], [A-Z], atleast one special character, " \
+               "length between 8 to 32. "
