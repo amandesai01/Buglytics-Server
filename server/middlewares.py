@@ -32,3 +32,15 @@ def error_view_access_required(f):
         except:
             return jsonify({"STATUS": "FAIL", "MSG": "ERROR IN AUTHENTICATION"}), 401
     return decorated_function
+
+def organization_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        try:
+            obj = get_decoded_token_from_header(request.headers)
+            if "ORGANIZATION" in obj['TYPE']:
+                return f(obj['ORG_ID'])
+            return jsonify({ "STATUS" : "FAIL", "MSG": "Contact Organization Owner to Provide Access." }), 401
+        except:
+            return jsonify({"STATUS": "FAIL", "MSG": "ERROR IN AUTHENTICATION"}), 401
+    return decorated_function
