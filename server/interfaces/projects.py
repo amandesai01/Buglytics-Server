@@ -2,6 +2,7 @@ from uuid import uuid4
 from time import time
 
 from server.datastore import projects as proj_db
+from server.exceptions import ProjectNotFoundException
 
 def create_project(title, details, organization_id):
     project = {
@@ -22,11 +23,14 @@ def get_all_projects(organization_id):
             "title": proj_raw[1],
             "details": proj_raw[2],
             "created_ts": proj_raw[3],
-            "bug_count": proj_raw[4]
+            "bug_count": proj_raw[5]
         })
+    return data
 
 def get_selected_project(project_id, organization_id):
     proj_raw = proj_db.select_specific_project(project_id, organization_id)
+    if not proj_raw:
+        raise ProjectNotFoundException
     project = {
             "project_id": proj_raw[0],
             "title": proj_raw[1],
