@@ -22,3 +22,7 @@ class PasswordMismatchException(BuglyticsException):
 class EmailAlreadyExistsException(BuglyticsException):
     def __str__(self):
         return "This email is already registered."
+
+class ProjectNotFoundException(BuglyticsException):
+    def __str__(self):
+        return "No such project found under this organization."
