@@ -30,8 +30,7 @@ def get_all_bugs(project_id, organization_id):
             "bug_id": bug_raw[0],
             "bug_level": bug_raw[1],
             "bug_location": bug_raw[2],
-            "bug_text": bug_raw[3],
-            "ts": bug_raw[4]
+            "ts": bug_raw[3]
         })
     return data
 
