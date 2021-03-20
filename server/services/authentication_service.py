@@ -41,7 +41,8 @@ def create_access_token(organization_id):
         valid_till = data['valid_till']
         token_contents = {
             "ACCESS_RIGHTS": access_rights,
-            "PROJ_ID": project_id
+            "PROJ_ID": project_id,
+            "ORG_ID": organization_id
         }
         if valid_till == "-":
             valid_till = None
