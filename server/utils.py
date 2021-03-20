@@ -12,8 +12,8 @@ def get_token_from_object(obj, key, time=None):
     try:
         if time:
             obj['exp'] = datetime.datetime.utcnow() + datetime.timedelta(seconds=time)
-            return jwt.encode(obj,key).decode("utf-8")
-        return jwt.encode(obj, key).decode("utf-8")
+            return jwt.encode(obj,key)
+        return jwt.encode(obj, key)
     except Exception as e:
         print(e)
         return None
