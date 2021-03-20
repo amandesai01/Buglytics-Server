@@ -36,7 +36,8 @@ def get_organization_details(organization_id):
     return organization
 
 def get_organization_id_from_email_password(organization_email, secret):
+    secret = sha256(secret.encode('utf-8')).hexdigest()
     data = org_db.select_org_id_from_email_pass(organization_email, secret)
-    if data and len(data > 0):
+    if data and len(data) > 0:
         return data[0]
     raise PasswordMismatchException
