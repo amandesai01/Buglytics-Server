@@ -61,9 +61,9 @@ def get_all_projects(organization_id):
         print_exc()
         return jsonify({"STATUS": "FAIL", "MSG": "Server Error"}), 501
 
-@app.route('/projects', methods=['POST'])
+@app.route('/projects')
 @organization_required
-def create_project(organization_id):
+def get_a_project(organization_id):
     try:
         project_id = request.args['projectid']
         project = proj_service.get_selected_project(project_id, organization_id)
