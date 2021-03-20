@@ -14,6 +14,10 @@ app.config['SECRET_KEY'] = get_site_secret_key()
 
 CORS(app)
 
+@app.route("/")
+def home():
+    return "<h3>--- Deployed ---<br>{}</h3>".format("<br>".join(SERVICES))
+
 if "ERRSERVICE" in SERVICES:
     from server.services.error_reporting_service import app as err_service
     app.register_blueprint(err_service)
