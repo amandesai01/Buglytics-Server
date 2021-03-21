@@ -1,7 +1,7 @@
 from server.properties import get_pg_connection
 
-QUERY_INSERT_BUG_INFO = "INSERT INTO bugs(bug_id, project_id, bug_level, bug_location, bug_text, ts) \
-                            VALUES (%s, %s, %s, %s, %s, %s)"
+QUERY_INSERT_BUG_INFO = "INSERT INTO bugs(bug_id, project_id, bug_level, bug_location, bug_text, bug_type, ts) \
+                            VALUES (%s, %s, %s, %s, %s, %s, %s)"
 
 QUERY_COUNT_PROJECT_ID_FOR_ORGANIZATION = "SELECT COUNT(project_id) FROM projects WHERE organization_id = %s AND project_id = %s"
 
@@ -17,7 +17,7 @@ db = get_pg_connection()
 
 def insert_bug(bug, organization_id):
     project_id_organization_tuple = (organization_id, bug['project_id'])
-    bug_tuple = (bug['bug_id'], bug['project_id'], bug['bug_level'], bug['bug_location'], bug['bug_text'], bug['ts'])
+    bug_tuple = (bug['bug_id'], bug['project_id'], bug['bug_level'], bug['bug_location'], bug['bug_text'], bug['bug_type'], bug['ts'])
     with db:
         with db.cursor() as cursor:
             cursor.execute(QUERY_COUNT_PROJECT_ID_FOR_ORGANIZATION, project_id_organization_tuple)

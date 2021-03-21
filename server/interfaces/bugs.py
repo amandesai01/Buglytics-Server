@@ -4,13 +4,14 @@ from time import time
 from server.datastore import bugs as bugs_db
 from server.exceptions import NoProjectUnderOrganisationException, UnidentifiedException
 
-def create_bug(project_id, bug_level, bug_location, bug_text, organization_id):
+def create_bug(project_id, bug_level, bug_location, bug_text, bug_type, organization_id):
     bug = {
         "bug_id": str(uuid4()),
         "project_id": project_id,
         "bug_level": bug_level,
         "bug_location": bug_location,
         "bug_text": bug_text,
+        "bug_type": bug_type,
         "ts": str(int(time()))
     }
     check = bugs_db.insert_bug(bug, organization_id)

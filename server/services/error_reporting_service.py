@@ -16,7 +16,8 @@ def create_error(project_id, organization_id):
         bug_level = data['buglevel']
         bug_location = data['buglocation']
         bug_text = data['bugtext']
-        bug = bug_service.create_bug(project_id, bug_level, bug_location, bug_text, organization_id)
+        bug_type = data['bugtype']
+        bug = bug_service.create_bug(project_id, bug_level, bug_location, bug_text, bug_type, organization_id)
         return jsonify({"STATUS": "OK", "DATA": bug})
     except KeyError as e:
         return jsonify({"STATUS": "FAIL", "MSG": "Incomplete Data: " + str(e)})
