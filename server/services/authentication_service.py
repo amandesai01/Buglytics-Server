@@ -10,6 +10,22 @@ from server.properties import get_site_secret_key
 
 app = Blueprint("authentication_service", __name__)
 
+@app.route('/auth/verify', methods=['POST'])
+def authenticate_token():
+    try:
+        data = request.get_json()
+        token = data['token']
+        if get_object_from_token(token, get_site_secret_key()):
+            return jsonify({"STATUS": "OK"})
+        return jsonify({"STATUS": "FAIL", "MSG": "Invalid Token."})
+    except KeyError as e:
+        return jsonify({"STATUS": "FAIL", "MSG": "Incomplete Data: " + str(e)})
+    except BuglyticsException as e:
+        return jsonify({"STATUS": "FAIL", "MSG": str(e)})
+    except Exception as e:
+        print_exc()
+        return jsonify({"STATUS": "FAIL", "MSG": "Server Error"}), 501
+
 @app.route('/authenticate/organization', methods=['POST'])
 def authenticate_organization():
     try:
