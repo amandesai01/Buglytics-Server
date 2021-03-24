@@ -7,10 +7,10 @@ QUERY_COUNT_PROJECT_ID_FOR_ORGANIZATION = "SELECT COUNT(project_id) FROM project
 
 # Subqueries to make sure only correct organisation can access it.
 
-QUERY_GET_ALL_BUGS = "SELECT bug_id, bug_level, bug_location, ts FROM bugs WHERE project_id IN \
+QUERY_GET_ALL_BUGS = "SELECT bug_id, bug_level, bug_location, bug_text, bug_type, ts FROM bugs WHERE project_id IN \
                         (SELECT project_id FROM projects WHERE organization_id = %s AND project_id = %s)"
 
-QUERY_GET_SPECIFIC_BUG = "SELECT bug_id, bug_level, bug_location, bug_text, ts FROM bugs WHERE bug_id = %s AND \
+QUERY_GET_SPECIFIC_BUG = "SELECT bug_id, bug_level, bug_location, bug_text, bug_type, ts FROM bugs WHERE bug_id = %s AND \
                             project_id IN (SELECT project_id FROM projects WHERE organization_id = %s)"
 
 db = get_pg_connection()
