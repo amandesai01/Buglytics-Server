@@ -71,3 +71,25 @@ def create_access_token(organization_id):
     except Exception as e:
         print_exc()
         return jsonify({"STATUS": "FAIL", "MSG": "Server Error"}), 501
+
+@app.route('/authenticate/organization/new', methods=['POST'])
+def new_organization():
+    try:
+        data = request.get_json()
+        org_email = data['email']
+        org_pass = data['password']
+        org_name = data['name']
+        org = org_service.create_organization(org_name, org_email, org_pass)
+        token_contents = {
+                "ORG_ID": org['organization_id'],
+                "TYPE": "ORGANIZATION"
+            }
+        token = get_token_from_object(token_contents, get_site_secret_key(), 7200)
+        return jsonify({"STATUS": "OK", "TOKEN": token})
+    except KeyError as e:
+        return jsonify({"STATUS": "FAIL", "MSG": "Incomplete Data: " + str(e)})
+    except BuglyticsException as e:
+        return jsonify({"STATUS": "FAIL", "MSG": str(e)})
+    except Exception as e:
+        print_exc()
+        return jsonify({"STATUS": "FAIL", "MSG": "Server Error"}), 501
