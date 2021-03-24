@@ -22,8 +22,7 @@ def get_all_projects(organization_id):
             "project_id": proj_raw[0],
             "title": proj_raw[1],
             "details": proj_raw[2],
-            "created_ts": proj_raw[3],
-            "bug_count": proj_raw[5]
+            "created_ts": proj_raw[3]
         })
     return data
 
@@ -36,6 +35,5 @@ def get_selected_project(project_id, organization_id):
             "title": proj_raw[1],
             "details": proj_raw[2],
             "created_ts": proj_raw[3],
-            "bug_count": proj_raw[4]
         }
     return project
